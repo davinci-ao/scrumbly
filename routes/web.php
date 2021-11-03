@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/project/delete/{feature_id}', [App\Http\Controllers\projectController::class, 'deleteFeature'])->name('feature.delete');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
