@@ -12,12 +12,12 @@
                 @include("layouts.sprint-form")
             <!-- ****** -->
             <h3 class="m-3">Sprints</h3>
-            @if($sprintData != null)
-                @foreach($sprintData as $sprint)
+            @if($sprints != null)
+                @foreach($sprints as $sprint)
                     @include('layouts.sprint', ['sprint' => $sprint])
                 @endforeach
             @endif
             </div>
-        </div> 
+        </div>
     </div>
 </x-app-layout>
