@@ -21,4 +21,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/overview', [App\Http\Controllers\projectsController::class, 'index'])->middleware(['auth'])->name('projects');
+
+Route::get('/overview/push', [App\Http\Controllers\sprintController::class, 'push'])->middleware(['auth'])->name('addSprint');
+
+Route::get('/overview/finish', [App\Http\Controllers\sprintController::class, 'finish'])->middleware(['auth'])->name('finishSprint');
+
 require __DIR__.'/auth.php';
