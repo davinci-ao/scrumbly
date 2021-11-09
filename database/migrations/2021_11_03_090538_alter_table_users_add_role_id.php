@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListsTable extends Migration
+class AlterTableUsersAddRoleId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lists', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 255);
-            $table->integer('project_id');
-            $table->integer('status_id');
-            $table->integer('type_id');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('role_id')->nullable();
         });
     }
 
@@ -30,6 +25,8 @@ class CreateListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lists');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('role_id');
+        });
     }
 }

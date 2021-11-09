@@ -6,7 +6,7 @@
     </x-slot>
     @include('layouts.delete-feature')
 
-    <a data-toggle="modal" data-target="#exampleModal" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+    <a data-toggle="modal" data-target="#deleteFeature" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
         {{ __('Delete Feature') }}
     </a>
 
@@ -17,16 +17,14 @@
     </a>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <!-- Is gonna become a popup -->
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg row">
-            <!-- ****** -->
             <h3 class="m-3">Sprints</h3>
-            @if($sprintData != null)
-                @foreach($sprintData as $sprint)
+            @if($sprints != null)
+                @foreach($sprints as $sprint)
                     @include('layouts.sprint', ['sprint' => $sprint])
                 @endforeach
             @endif
             </div>
-        </div> 
+        </div>
     </div>
 </x-app-layout>
