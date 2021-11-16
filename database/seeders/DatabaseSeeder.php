@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('rights')->insert([
-            'name' => 'admin',
-        ]);
+        
     }
 }
