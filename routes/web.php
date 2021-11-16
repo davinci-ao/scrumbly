@@ -22,9 +22,7 @@ Route::get('/', function () {
 
 Route::get('/project/delete/{feature_id}', [App\Http\Controllers\projectsController::class, 'deleteFeature'])->name('feature.delete');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [ProjectsController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/overview', [SprintController::class, 'index'])->middleware(['auth'])->name('projects');
 
