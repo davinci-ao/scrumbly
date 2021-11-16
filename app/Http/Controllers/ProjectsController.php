@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sprint;
-use App\Models\Feature;
+use App\Models\Project;
+// use App\Models\Sprint;
+// use App\Models\Feature;
 
 class ProjectsController extends Controller
 {
     public function index()
     {
-        $sprints = Sprint::all();
-        $features = Feature::all();
-        return view('overview', compact('sprints'), compact('features'));
+        $projects = Project::all();
+//      $sprints = Sprint::all();   - Needs to be properly connected to the projects
+//      $features = Feature::all();   - fix in sprint 2
+        return view('dashboard', ['projects' => $projects]);
     }
 }
