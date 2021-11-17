@@ -9,6 +9,13 @@ use App\Models\Feature;
 class SprintController extends Controller
 {
 
+    public function index()
+    {
+        $sprints = Sprint::all();
+        $features = Feature::all();
+        return view('overview', compact('sprints'), compact('features'));
+    }
+    
     public function push(Request $request)
     {
         $sprint = new Sprint;

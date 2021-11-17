@@ -4,12 +4,6 @@
             {{ __('projects') }}
         </h2>
     </x-slot>
-    @include('layouts.delete-feature')
-
-    <a data-toggle="modal" data-target="#deleteFeature" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
-        {{ __('Delete Feature') }}
-    </a>
-
     @include("layouts.sprint-form")
 
     <a data-toggle="modal" data-target="#addNewFeature" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
