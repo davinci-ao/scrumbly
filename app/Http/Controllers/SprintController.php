@@ -30,7 +30,7 @@ class SprintController extends Controller
 
     public function finish(Request $request)
     {
-        $sprint = Sprint::find($request->input('sprintId'));
+        $sprint = Sprint::find($request->input('sprint_id'));
         $sprint->status_id = 1;
         $sprint->save();
 
