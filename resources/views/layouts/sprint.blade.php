@@ -2,7 +2,11 @@
     <div>
         <h3>{{$sprint->name}}</h3>
         <form action="{{route('finishSprint')}}">
-            <button class="btn btn-primary" type="submit" name="sprintId" value='{{$sprint->id}}'>Finish</button>    
+            <input type="hidden" name="sprintId" value='{{$sprint->id}}'>
+            <button class="btn btn-primary" type="submit">Finish</button>    
+            @if($sprint->status_id == 1)
+            finished
+            @endif
         </form>
     </div>
 </div>
