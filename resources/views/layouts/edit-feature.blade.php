@@ -1,8 +1,8 @@
-<div class="modal fade" id="editFeature" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editFeature{{ $feature->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Feature </h5>
+        <h5 class="modal-title" id="editFeatureLabel">Edit Feature </h5>
       </div>
       <div class="modal-body">
         <form action="{{route('editFeature', [$feature->id])}}">

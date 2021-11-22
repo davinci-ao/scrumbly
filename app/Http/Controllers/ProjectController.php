@@ -7,7 +7,7 @@ use App\Models\Project;
 // use App\Models\Sprint;
 // use App\Models\Feature;
 
-class ProjectsController extends Controller
+class ProjectController extends Controller
 {
     public function index()
     {
