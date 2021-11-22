@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SprintController;
-use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FeatureController;
 
 
@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [ProjectsController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/overview', [SprintController::class, 'index'])->middleware(['auth'])->name('projects');
 
