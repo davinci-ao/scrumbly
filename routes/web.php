@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SprintController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -22,9 +23,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth'])->name('dashboard');
-
+Route::get('/homepage', [ProjectController::class, 'index'])->middleware(['auth'])->name('homepage');
 Route::get('/overview', [SprintController::class, 'index'])->middleware(['auth'])->name('projects');
+Route::get('/userlist', [DashboardController::class, 'index'])->middleware(['auth'])->name('userlist');
 
 Route::post('/overview/delete/{feature_id}', [FeatureController::class, 'deleteFeature'])->name('deleteFeature');
 Route::get('/overview/edit/{feature_id}', [FeatureController::class, 'editFeature'])->middleware(['auth'])->name('editFeature');

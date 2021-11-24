@@ -16,6 +16,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'name' => 'superadmin',
+            'email' => 'superadmin@admin.com',
+            'password' => Hash::make('superadmin'),
+            'rights' => 'superadmin',
+        ]);
+        DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin'),
