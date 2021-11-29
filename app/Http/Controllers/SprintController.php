@@ -33,7 +33,6 @@ class SprintController extends Controller
         $sprint = Sprint::find($request->input('sprint_id'));
         $sprint->status_id = 1;
         $sprint->save();
-
         return redirect()->route('projects');
     }
 }
