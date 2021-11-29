@@ -12,4 +12,17 @@ class DashboardController extends Controller
         $users = User::all();
         return view('userlist', ['users' => $users]);
     }
+
+    public function edit()
+    {
+
+    }
+
+    public function delete($id)
+    {
+        User::where('id', $id)->delete();
+        
+        $users = User::all();
+        return view('userlist', ['users' => $users]);
+    }
 }

@@ -24,7 +24,7 @@
                 </div>
                 @if(Auth::check() &&  Auth::user()->rights == 'admin' || Auth::user()->rights == 'superadmin')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link :href="route('userlist')" :active="request()->routeIs('overview')">
+                        <x-jet-nav-link :href="route('userlist')" :active="request()->routeIs('homepage')">
                             {{ __('Userlist') }}
                         </x-jet-nav-link>
                     </div>

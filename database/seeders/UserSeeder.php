@@ -28,6 +28,12 @@ class UserSeeder extends Seeder
             'rights' => 'admin',
         ]);
         DB::table('users')->insert([
+            'name' => 'admin2',
+            'email' => 'admin2@admin.com',
+            'password' => Hash::make('admin2'),
+            'rights' => 'admin',
+        ]);
+        DB::table('users')->insert([
             'name' => 'user1',
             'email' => 'user1@user.com',
             'password' => Hash::make('user1'),
@@ -37,6 +43,24 @@ class UserSeeder extends Seeder
             'name' => 'user2',
             'email' => 'user2@user.com',
             'password' => Hash::make('user2'),
+            'rights' => 'user',
+        ]);
+        DB::table('users')->insert([
+            'name' => 'user3',
+            'email' => 'user3@user.com',
+            'password' => Hash::make('user3'),
+            'rights' => 'user',
+        ]);
+        DB::table('users')->insert([
+            'name' => 'user4',
+            'email' => 'user4@user.com',
+            'password' => Hash::make('user4'),
+            'rights' => 'user',
+        ]);
+        DB::table('users')->insert([
+            'name' => 'user5',
+            'email' => 'user5@user.com',
+            'password' => Hash::make('user5'),
             'rights' => 'user',
         ]);
     }
