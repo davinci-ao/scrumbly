@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\SprintController;
+use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FeatureController;
 
@@ -24,12 +24,17 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/overview', [SprintController::class, 'index'])->middleware(['auth'])->name('projects');
+//New route
+Route::get('/overview/{project_id}', [ProjectController::class, 'projectOverview'])->middleware(['auth'])->name('projectOverview');
+//Old route
+// Route::get('/overview', [PanelController::class, 'index'])->middleware(['auth'])->name('projects');
+
+Route::post('/overview/deletePanel/{panel_id}', [PanelController::class, 'delete'])->name('deletePanel');
 
 Route::post('/overview/delete/{feature_id}', [FeatureController::class, 'deleteFeature'])->name('deleteFeature');
 Route::get('/overview/edit/{feature_id}', [FeatureController::class, 'editFeature'])->middleware(['auth'])->name('editFeature');
-Route::get('/overview/push', [SprintController::class, 'push'])->middleware(['auth'])->name('addSprint');
-Route::get('/overview/push-feature', [FeatureController::class, 'push'])->middleware(['auth'])->name('addFeature');
-Route::get('/overview/finish', [SprintController::class, 'finish'])->middleware(['auth'])->name('finishSprint');
+Route::post('/overview/push', [PanelController::class, 'push'])->middleware(['auth'])->name('addPanel');
+Route::post('/overview/push-feature', [FeatureController::class, 'push'])->middleware(['auth'])->name('addFeature');
+Route::get('/overview/finish', [PanelController::class, 'finish'])->middleware(['auth'])->name('finishPanel');
 
 require __DIR__.'/auth.php';

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeaturesTable extends Migration
+class CreatePanelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateFeaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('features', function (Blueprint $table) {
+        Schema::create('panels', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->integer('storypoints');
+            $table->string('name', 255);
+            $table->integer('project_id');
             $table->integer('status_id');
-            $table->integer('panel_id');
+            $table->integer('type_id');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateFeaturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('features');
+        Schema::dropIfExists('panels');
     }
 }

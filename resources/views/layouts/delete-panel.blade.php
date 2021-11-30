@@ -1,11 +1,11 @@
-<div class="modal fade" id="deleteFeature{{ $feature->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deletePanel{{ $panel->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteFeatureLabel">Weet je zeker dat je {{ $feature->name }} wilt verwijderen?</h5>
+        <h5 class="modal-title" id="deletePanelLabel">Weet je zeker dat je {{ $panel->name }} wilt verwijderen?</h5>
       </div>
       <div class="modal-body">
-        <form method='post' action="{{ route('deleteFeature', [$feature->id] ) }}">
+        <form method='post' action="{{ route('deletePanel', [$panel->id] ) }}">
         @csrf
           <div class="d-flex justify-content-center">
             <input type="hidden" id="project_id" name="project_id" value="{{ $project->id }}">

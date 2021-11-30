@@ -14,24 +14,22 @@ class FeatureController extends Controller
         $feature->description = $request->input('description');
         $feature->storypoints = $request->input('storypoint');
         $feature->status_id = 0;
-        $feature->list_id = 0;
+        $feature->panel_id = 1;
         $feature->save();
-
-        return redirect()->route('projects');
+        return redirect()->route('projectOverview', ['project_id' => $request->input('project_id')]);
     }
 
-    public function editFeature(Request $request, $feature_id){
-        $request->all();  
+    public function editFeature(Request $request, $feature_id){ 
         $feature = Feature::find($request->feature_id);
         $feature->name = $request->name;
         $feature->description = $request->description;
         $feature->storypoints = $request->storypoints;
         $feature->save();
-        return redirect()->route('projects');
+        return redirect()->route('projectOverview', ['project_id' => $request->input('project_id')]);
     }
 
-    public function deleteFeature($feature_id){
+    public function deleteFeature(Request $request,  $feature_id){
         Feature::where('id', $feature_id)->delete();
-        return redirect()->route('projects');
+        return redirect()->route('projectOverview', ['project_id' => $request->input('project_id')]);
     }
 }
