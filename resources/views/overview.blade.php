@@ -1,5 +1,5 @@
-@include('layouts.feature-form')
-@include("layouts.panel-form")
+@include('layouts.create-feature')
+@include("layouts.create-panel")
 
 <x-app-layout>
     <x-slot name="header">
