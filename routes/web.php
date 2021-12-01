@@ -22,19 +22,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //New route
-Route::get('/overview/{project_id}', [ProjectController::class, 'projectOverview'])->middleware(['auth'])->name('projectOverview');
-//Old route
-// Route::get('/overview', [PanelController::class, 'index'])->middleware(['auth'])->name('projects');
+Route::get('/overview/{project_id}', [ProjectController::class, 'projectOverview'])->middleware(['auth', 'verified'])->name('projectOverview');
 
 Route::post('/overview/deletePanel/{panel_id}', [PanelController::class, 'delete'])->name('deletePanel');
 
 Route::post('/overview/delete/{feature_id}', [FeatureController::class, 'deleteFeature'])->name('deleteFeature');
-Route::get('/overview/edit/{feature_id}', [FeatureController::class, 'editFeature'])->middleware(['auth'])->name('editFeature');
-Route::post('/overview/push', [PanelController::class, 'push'])->middleware(['auth'])->name('addPanel');
-Route::post('/overview/push-feature', [FeatureController::class, 'push'])->middleware(['auth'])->name('addFeature');
-Route::get('/overview/finish', [PanelController::class, 'finish'])->middleware(['auth'])->name('finishPanel');
+Route::post('/overview/edit/{feature_id}', [FeatureController::class, 'editFeature'])->middleware(['auth', 'verified'])->name('editFeature');
+Route::post('/overview/editPanel/{panel_id}', [PanelController::class, 'edit'])->middleware(['auth', 'verified'])->name('editPanel');
+Route::post('/overview/push', [PanelController::class, 'push'])->middleware(['auth', 'verified'])->name('addPanel');
+Route::post('/overview/push-feature', [FeatureController::class, 'push'])->middleware(['auth', 'verified'])->name('addFeature');
+Route::get('/overview/finish', [PanelController::class, 'finish'])->middleware(['auth', 'verified'])->name('finishPanel');
+
 
 require __DIR__.'/auth.php';

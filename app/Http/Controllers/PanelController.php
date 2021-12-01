@@ -13,9 +13,15 @@ class PanelController extends Controller
     {
         $panel = new Panel;
         $panel->name = $request->input('name');
-        $panel->type_id = 1;
-        $panel->status_id = 0;
+        $panel->type = 'Sprint';
         $panel->project_id = $request->input('project_id');
+        $panel->save();
+        return redirect()->route('projectOverview', ['project_id' => $request->input('project_id')]);
+    }
+    public function edit(Request $request, $panel_id)
+    {
+        $panel = Panel::find($panel_id);
+        $panel->name = $request->name;
         $panel->save();
         return redirect()->route('projectOverview', ['project_id' => $request->input('project_id')]);
     }
