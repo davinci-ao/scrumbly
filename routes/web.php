@@ -23,18 +23,15 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/project/{project_id}', [ProjectController::class, 'projectIndex'])->middleware(['auth', 'verified'])->name('projectIndex');
+Route::post('/project/finishPanel/{panel_id}', [PanelController::class, 'finishPanel'])->middleware(['auth', 'verified'])->name('finishPanel');
+Route::post('/project/createPanel', [PanelController::class, 'createPanel'])->middleware(['auth', 'verified'])->name('createPanel');
+Route::post('/project/editPanel/{panel_id}', [PanelController::class, 'editPanel'])->middleware(['auth', 'verified'])->name('editPanel');
+Route::post('/project/deletePanel/{panel_id}', [PanelController::class, 'deletePanel'])->middleware(['auth', 'verified'])->name('deletePanel');
 
-//New route
-Route::get('/overview/{project_id}', [ProjectController::class, 'projectOverview'])->middleware(['auth', 'verified'])->name('projectOverview');
-
-Route::post('/overview/deletePanel/{panel_id}', [PanelController::class, 'delete'])->name('deletePanel');
-
-Route::post('/overview/delete/{feature_id}', [FeatureController::class, 'deleteFeature'])->name('deleteFeature');
-Route::post('/overview/edit/{feature_id}', [FeatureController::class, 'editFeature'])->middleware(['auth', 'verified'])->name('editFeature');
-Route::post('/overview/editPanel/{panel_id}', [PanelController::class, 'edit'])->middleware(['auth', 'verified'])->name('editPanel');
-Route::post('/overview/push', [PanelController::class, 'push'])->middleware(['auth', 'verified'])->name('addPanel');
-Route::post('/overview/push-feature', [FeatureController::class, 'push'])->middleware(['auth', 'verified'])->name('addFeature');
-Route::get('/overview/finish', [PanelController::class, 'finish'])->middleware(['auth', 'verified'])->name('finishPanel');
+Route::post('/project/createFeature', [FeatureController::class, 'createFeature'])->middleware(['auth', 'verified'])->name('createFeature');
+Route::post('/project/deleteFeature/{feature_id}', [FeatureController::class, 'deleteFeature'])->middleware(['auth', 'verified'])->name('deleteFeature');
+Route::post('/project/editFeature/{feature_id}', [FeatureController::class, 'editFeature'])->middleware(['auth', 'verified'])->name('editFeature');
 
 
 require __DIR__.'/auth.php';

@@ -17,6 +17,7 @@ class CreatePanelsTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->integer('project_id');
+            $table->boolean('active');
             $table->string('type');
             $table->timestamps();
         });

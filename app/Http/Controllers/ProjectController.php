@@ -15,7 +15,7 @@ class ProjectController extends Controller
         return view('dashboard', ['projects' => $projects]);
     }
 
-    public function projectOverview($project_id){
+    public function projectIndex($project_id){
         $project = Project::find($project_id);
         $panels = $project->panels;
         $features = Feature::all();
