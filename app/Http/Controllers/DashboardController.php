@@ -10,6 +10,7 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::all();
+
         return view('userlist', ['users' => $users]);
     }
 
@@ -23,11 +24,10 @@ class DashboardController extends Controller
         return redirect()->route('userlist');
     }
 
-    public function delete($id)
+    public function delete($user_id)
     {
-        User::where('id', $id)->delete();
-        
-        $users = User::all();
+        User::where('id', $user_id)->delete();
+
         return redirect()->route('userlist');
     }
 }

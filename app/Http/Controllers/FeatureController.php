@@ -27,11 +27,13 @@ class FeatureController extends Controller
         $feature->description = $request->description;
         $feature->storypoints = $request->storypoints;
         $feature->save();
+        
         return redirect()->route('projects');
     }
 
     public function deleteFeature($feature_id){
         Feature::where('id', $feature_id)->delete();
+
         return redirect()->route('projects');
     }
 }

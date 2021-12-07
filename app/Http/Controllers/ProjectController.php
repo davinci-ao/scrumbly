@@ -14,6 +14,7 @@ class ProjectController extends Controller
         $projects = Project::all();
 //      $sprints = Sprint::all();   - Needs to be properly connected to the projects
 //      $features = Feature::all();   - fix in sprint 2
+
         return view('homepage', ['projects' => $projects]);
     }
 }

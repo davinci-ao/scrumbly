@@ -13,6 +13,7 @@ class SprintController extends Controller
     {
         $sprints = Sprint::all();
         $features = Feature::all();
+        
         return view('overview', compact('sprints'), compact('features'));
     }
     

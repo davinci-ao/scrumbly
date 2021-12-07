@@ -32,7 +32,7 @@ Route::get('/overview/edit/{feature_id}', [FeatureController::class, 'editFeatur
 Route::get('/overview/push', [SprintController::class, 'push'])->middleware(['auth'])->name('addSprint');
 Route::get('/overview/push-feature', [FeatureController::class, 'push'])->middleware(['auth'])->name('addFeature');
 Route::get('/overview/finish', [SprintController::class, 'finish'])->middleware(['auth'])->name('finishSprint');
-Route::get('/userlist/edit/{id}', [DashboardController::class, 'edit'])->middleware(['auth'])->name('editUser');
-Route::get('/userlist/delete/{id}', [DashboardController::class, 'delete'])->middleware(['auth'])->name('deleteUser');
+Route::get('/userlist/edit/{user_id}', [DashboardController::class, 'edit'])->middleware(['auth'])->name('editUser');
+Route::get('/userlist/delete/{user_id}', [DashboardController::class, 'delete'])->middleware(['auth'])->name('deleteUser');
 
 require __DIR__.'/auth.php';
