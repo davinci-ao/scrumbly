@@ -13,9 +13,14 @@ class DashboardController extends Controller
         return view('userlist', ['users' => $users]);
     }
 
-    public function edit()
-    {
-
+    public function edit(Request $request, $user_id){
+        $request->all();  
+        $user = User::find($user_id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        
+        return redirect()->route('userlist');
     }
 
     public function delete($id)
@@ -23,6 +28,6 @@ class DashboardController extends Controller
         User::where('id', $id)->delete();
         
         $users = User::all();
-        return view('userlist', ['users' => $users]);
+        return redirect()->route('userlist');
     }
 }

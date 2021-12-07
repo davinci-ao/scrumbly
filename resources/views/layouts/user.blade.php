@@ -2,6 +2,12 @@
     <div class='userblock'>
         <p>{{$user->name}}</p>
         <p>id = {{$user->id}}</p>
-        <a href="{{route('userlist.delete', $user->id)}}"><input type="button" value="delete"></a>
+        @include('layouts.edit-user')
+        <a data-toggle="modal" data-target="#editUser{{ $user->id }}" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+            {{ __('Edit') }}
+        </a>
+        <a data-toggle="modal" data-target="#deleteUser{{ $user->id }}" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+            {{ __('Delete') }}
+        </a>
     </div>
 </div>
