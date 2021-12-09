@@ -23,13 +23,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/homepage', [ProjectController::class, 'index'])->middleware(['auth'])->name('homepage');
+Route::get('/homepage', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('homepage');
 Route::get('/projects', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('projects');
 Route::get('/project/{project_id}', [ProjectController::class, 'projectIndex'])->middleware(['auth', 'verified'])->name('projectIndex');
-Route::post('/project/finishPanel/{panel_id}', [PanelController::class, 'finishPanel'])->middleware(['auth', 'verified'])->name('finishPanel');
-Route::post('/project/createPanel', [PanelController::class, 'createPanel'])->middleware(['auth', 'verified'])->name('createPanel');
-Route::post('/project/editPanel/{panel_id}', [PanelController::class, 'editPanel'])->middleware(['auth', 'verified'])->name('editPanel');
-Route::post('/project/deletePanel/{panel_id}', [PanelController::class, 'deletePanel'])->middleware(['auth', 'verified'])->name('deletePanel');
+Route::post('/project/finishPanel/{panel_id}', [PanelController::class, 'finish'])->middleware(['auth', 'verified'])->name('finishPanel');
+Route::post('/project/createPanel', [PanelController::class, 'create'])->middleware(['auth', 'verified'])->name('createPanel');
+Route::post('/project/editPanel/{panel_id}', [PanelController::class, 'edit'])->middleware(['auth', 'verified'])->name('editPanel');
+Route::post('/project/deletePanel/{panel_id}', [PanelController::class, 'delete'])->middleware(['auth', 'verified'])->name('deletePanel');
 
 Route::post('/project/createFeature', [FeatureController::class, 'createFeature'])->middleware(['auth', 'verified'])->name('createFeature');
 Route::post('/project/deleteFeature/{feature_id}', [FeatureController::class, 'deleteFeature'])->middleware(['auth', 'verified'])->name('deleteFeature');
