@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
 use DB;
 
 class ProjectSeeder extends Seeder
@@ -20,6 +19,13 @@ class ProjectSeeder extends Seeder
             'invite_link' => 'project1_invite_link',
             'discription' => 'Beschrijving',
             'team_id' => 1,
+        ]);
+
+        DB::table('projects')->insert([
+            'name' => 'project2',
+            'invite_link' => 'project2_invite_link',
+            'discription' => 'Beschrijving',
+            'team_id' => 2,
         ]);
     }
 }

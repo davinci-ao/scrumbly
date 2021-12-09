@@ -19,7 +19,7 @@ class CreateFeaturesTable extends Migration
             $table->text('description');
             $table->integer('storypoints');
             $table->integer('status_id');
-            $table->integer('list_id');
+            $table->integer('panel_id');
             $table->timestamps();
         });
     }

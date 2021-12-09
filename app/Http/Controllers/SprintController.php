@@ -9,6 +9,14 @@ use App\Models\Feature;
 class SprintController extends Controller
 {
 
+    public function index()
+    {
+        $sprints = Sprint::all();
+        $features = Feature::all();
+        
+        return view('overview', compact('sprints'), compact('features'));
+    }
+    
     public function push(Request $request)
     {
         $sprint = new Sprint;
@@ -23,7 +31,7 @@ class SprintController extends Controller
 
     public function finish(Request $request)
     {
-        $sprint = Sprint::find($request->input('finishId'));
+        $sprint = Sprint::find($request->input('sprint_id'));
         $sprint->status_id = 1;
         $sprint->save();
 

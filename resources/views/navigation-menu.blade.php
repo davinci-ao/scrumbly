@@ -5,25 +5,25 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" style="height:100%; padding:3.5px" >
+                    <a href="{{ route('homepage') }}" style="height:100%; padding:3.5px" >
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-jet-nav-link href="{{ route('homepage') }}" :active="request()->routeIs('homepage')">
+                        {{ __('Homepage') }}
                     </x-jet-nav-link>
                 </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link :href="route('projects')" :active="request()->routeIs('overview')">
-                        {{ __('Projects') }}
-                    </x-jet-nav-link>
-                </div>
+                @if(Auth::check() &&  Auth::user()->rights == 'admin' || Auth::user()->rights == 'superadmin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link :href="route('userlist')" :active="request()->routeIs('homepage')">
+                            {{ __('Userlist') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endif
             </div>
-
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures() && Auth::user()->current_team_id)
@@ -144,8 +144,13 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-jet-responsive-nav-link href="{{ route('homepage') }}" :active="request()->routeIs('homepage')">
+                {{ __('Homepage') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('projects') }}" :active="request()->routeIs('overview')">
+                {{ __('Projects') }}
             </x-jet-responsive-nav-link>
         </div>
 

@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Features;
 use DB;
 
-class Sprint extends Model
+class Panel extends Model
 {
     use HasFactory;
-    protected $table = 'lists';
 
+    public function features(){
+        return $this->hasMany(Feature::class);
+    }
 }
