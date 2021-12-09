@@ -36,6 +36,7 @@ Route::post('/project/deleteFeature/{feature_id}', [FeatureController::class, 'd
 Route::post('/project/editFeature/{feature_id}', [FeatureController::class, 'editFeature'])->middleware(['auth', 'verified'])->name('editFeature');
 
 Route::get('/userlist', [DashboardController::class, 'index'])->middleware(['auth'])->name('userlist');
-
+Route::get('/userlist/edit/{user_id}', [DashboardController::class, 'edit'])->middleware(['auth'])->name('editUser');
+Route::get('/userlist/delete/{user_id}', [DashboardController::class, 'delete'])->middleware(['auth'])->name('deleteUser');
 
 require __DIR__.'/auth.php';
