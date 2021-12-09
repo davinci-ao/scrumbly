@@ -14,6 +14,7 @@ class PanelController extends Controller
         $panel = Panel::find($panel_id);
         $panel->active = false;
         $panel->save();
+        
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
@@ -25,6 +26,7 @@ class PanelController extends Controller
         $panel->project_id = $request->input('project_id');
         $panel->active = true;
         $panel->save();
+        
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
@@ -33,6 +35,7 @@ class PanelController extends Controller
         $panel = Panel::find($panel_id);
         $panel->name = $request->name;
         $panel->save();
+        
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
@@ -43,6 +46,7 @@ class PanelController extends Controller
             $feature->delete();
         }
         Panel::where('id', $panel_id)->delete();
+        
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 }
