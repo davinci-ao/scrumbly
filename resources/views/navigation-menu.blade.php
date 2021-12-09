@@ -16,12 +16,6 @@
                         {{ __('Homepage') }}
                     </x-jet-nav-link>
                 </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link :href="route('projects')" :active="request()->routeIs('overview')">
-                        {{ __('Projects') }}
-                    </x-jet-nav-link>
-                </div>
                 @if(Auth::check() &&  Auth::user()->rights == 'admin' || Auth::user()->rights == 'superadmin')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link :href="route('userlist')" :active="request()->routeIs('homepage')">

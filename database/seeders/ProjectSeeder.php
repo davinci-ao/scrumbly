@@ -20,5 +20,12 @@ class ProjectSeeder extends Seeder
             'discription' => 'Beschrijving',
             'team_id' => 1,
         ]);
+
+        DB::table('projects')->insert([
+            'name' => 'project2',
+            'invite_link' => 'project2_invite_link',
+            'discription' => 'Beschrijving',
+            'team_id' => 2,
+        ]);
     }
 }
