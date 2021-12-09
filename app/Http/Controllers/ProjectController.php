@@ -12,7 +12,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        return view('dashboard', ['projects' => $projects]);
+        return view('homepage', ['projects' => $projects]);
     }
 
     public function projectIndex($project_id){

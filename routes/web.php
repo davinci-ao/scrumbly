@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -32,6 +33,9 @@ Route::post('/project/deletePanel/{panel_id}', [PanelController::class, 'deleteP
 Route::post('/project/createFeature', [FeatureController::class, 'createFeature'])->middleware(['auth', 'verified'])->name('createFeature');
 Route::post('/project/deleteFeature/{feature_id}', [FeatureController::class, 'deleteFeature'])->middleware(['auth', 'verified'])->name('deleteFeature');
 Route::post('/project/editFeature/{feature_id}', [FeatureController::class, 'editFeature'])->middleware(['auth', 'verified'])->name('editFeature');
+
+Route::get('/homepage', [ProjectController::class, 'index'])->middleware(['auth'])->name('homepage');
+Route::get('/userlist', [DashboardController::class, 'index'])->middleware(['auth'])->name('userlist');
 
 
 require __DIR__.'/auth.php';
