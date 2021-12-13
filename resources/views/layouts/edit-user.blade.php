@@ -11,7 +11,7 @@
             <label for="user-name" class="col-form-label">Name:</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
             <label for="user-email" class="col-form-label">Email:</label>
-            <input type="text" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
+            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
