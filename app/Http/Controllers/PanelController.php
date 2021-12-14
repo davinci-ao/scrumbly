@@ -9,7 +9,7 @@ use App\Models\Feature;
 class PanelController extends Controller
 {
     
-    public function finishPanel(Request $request, $panel_id)
+    public function finish(Request $request, $panel_id)
     {
         $panel = Panel::find($panel_id);
         $panel->active = false;
@@ -17,7 +17,7 @@ class PanelController extends Controller
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
-    public function createPanel(Request $request)
+    public function create(Request $request)
     {
         $panel = new Panel;
         $panel->name = $request->input('name');
@@ -28,7 +28,7 @@ class PanelController extends Controller
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
-    public function editPanel(Request $request, $panel_id)
+    public function edit(Request $request, $panel_id)
     {
         $panel = Panel::find($panel_id);
         $panel->name = $request->name;
@@ -36,7 +36,7 @@ class PanelController extends Controller
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
-    public function deletePanel(Request $request, $panel_id){
+    public function delete(Request $request, $panel_id){
         $panel = Panel::find($panel_id);
         $features = $panel->features;
         foreach($features as $feature){
