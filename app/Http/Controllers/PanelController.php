@@ -14,7 +14,7 @@ class PanelController extends Controller
         $panel = Panel::find($panel_id);
         $panel->active = false;
         $panel->save();
-
+    
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
