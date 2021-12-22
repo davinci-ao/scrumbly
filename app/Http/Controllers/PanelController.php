@@ -15,7 +15,7 @@ class PanelController extends Controller
         $panel->active = false;
         $panel->save();
         
-        return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
+        return redirect()->route('projectUpdate', ['project_id' => $request->input('project_id')]);
     }
 
     public function create(Request $request)

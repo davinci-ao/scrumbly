@@ -25,7 +25,7 @@
                     {{ $project->discription }}
                     </div>
 
-                    <a href="{{ route('projectIndex', [$project->id]) }}">
+                    <a href="{{ route('projectIndex', [$project->name]) }}">
                         <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                                 <div>Ga naar dit project</div>
 

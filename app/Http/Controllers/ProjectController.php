@@ -15,8 +15,8 @@ class ProjectController extends Controller
         return view('homepage', ['projects' => $projects]);
     }
 
-    public function projectIndex($project_id){
-        $project = Project::find($project_id);
+    public function projectIndex($slug){
+        $project = Project::where('name', '=', $slug)->first();
         $panels = $project->panels;
         $features = Feature::all();
         return view('overview', compact(['project', 'panels', 'features']));
