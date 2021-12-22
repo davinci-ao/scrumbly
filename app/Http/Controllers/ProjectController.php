@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Panel;
 use App\Models\Feature;
+use App\Models\Projectuser;
+use Auth;
 
 class ProjectController extends Controller
 {
@@ -20,5 +22,15 @@ class ProjectController extends Controller
         $panels = $project->panels;
         $features = Feature::all();
         return view('overview', compact(['project', 'panels', 'features']));
+    }
+
+    public function user($project_id)
+    {
+        $project_user = new Projectuser;
+        $user_id = Auth::user()->id;
+
+        $project_user->user_id = $user_id;
+        $project_user->project_id = $project_id;
+        $project_user->save();
     }
 }

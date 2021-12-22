@@ -12,11 +12,11 @@
             @endif
         </form>
 
-        <x-nav-link data-toggle="modal" data-target="#deletePanel{{ $panel->id }}" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+        <x-nav-link data-toggle="modal" data-target="#deletePanel{{ $panel->id }}" class="btn btn-danger text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
             {{ __('Delete panel') }}
         </x-nav-link>
 
-        <x-nav-link data-toggle="modal" data-target="#editPanel{{ $panel->id }}" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+        <x-nav-link data-toggle="modal" data-target="#editPanel{{ $panel->id }}" class="btn btn-warning text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
             {{ __('Edit panel') }}
         </x-nav-link>
     </div>
