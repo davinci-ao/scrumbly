@@ -7,7 +7,7 @@ use App\Models\Feature;
 
 class FeatureController extends Controller
 {
-    public function createFeature(Request $request)
+    public function create(Request $request)
     {
         $feature = new Feature;
         $feature->name = $request->input('name');
@@ -19,7 +19,7 @@ class FeatureController extends Controller
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
-    public function editFeature(Request $request, $feature_id){ 
+    public function edit(Request $request, $feature_id){ 
         $feature = Feature::find($request->feature_id);
         $feature->name = $request->name;
         $feature->description = $request->description;
@@ -28,7 +28,7 @@ class FeatureController extends Controller
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
-    public function deleteFeature(Request $request,  $feature_id){
+    public function delete(Request $request,  $feature_id){
         Feature::where('id', $feature_id)->delete();
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
