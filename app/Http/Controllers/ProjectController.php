@@ -21,4 +21,13 @@ class ProjectController extends Controller
         $features = Feature::all();
         return view('project', compact(['project', 'panels', 'features']));
     }
+
+    public function edit(Request $request, $project_id){ 
+        $project = Project::find($request->project_id);
+        $project->name = $request->name;
+        $project->discription = $request->discription;
+        $project->slug = $request->slug;
+        $project->save();
+        return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
+    }
 }

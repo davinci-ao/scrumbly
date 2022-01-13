@@ -11,7 +11,7 @@
             <label for="feature-name" class="col-form-label">Feature name:</label>
             <input type="text" class="form-control" id="name" name="name" required>
             <label for="feature-description" class="col-form-label">Feature description:</label>
-            <input type="description" class="form-control" id="descrription" name="description" required>
+            <input type="description" class="form-control" id="description" name="description" required>
             <label for="feature-name" class="col-form-label">Storypoint(s):</label>
             <input type="hidden" id="project_id" name="project_id" value="{{ $project->id }}">
             <div class="col-2">

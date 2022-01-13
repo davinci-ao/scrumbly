@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('name', 255);
             $table->text('invite_link');
             $table->text('discription');
-            $table->text('slug');
+            $table->text('slug')->nullable();
             $table->integer('team_id');
             $table->timestamps();
         });
