@@ -19,6 +19,6 @@ class ProjectController extends Controller
         $project = Project::where('name', '=', $slug)->first();
         $panels = $project->panels;
         $features = Feature::all();
-        return view('overview', compact(['project', 'panels', 'features']));
+        return view('project', compact(['project', 'panels', 'features']));
     }
 }
