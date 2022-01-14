@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('/homepage', [ProjectController::class, 'index'])->middleware(['auth'])->name('homepage');
 
 Route::get('/projects', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('projects');
-Route::get('/project/{project_id}', [ProjectController::class, 'projectIndex'])->middleware(['auth', 'verified', 'role.system'])->name('projectIndex');
+Route::get('/project/{project_id}', [ProjectController::class, 'projectIndex'])->middleware(['auth', 'verified', 'role.system:developer'])->name('projectIndex');
 Route::get('/project/add-user/{project_id}', [ProjectController::class, 'user'])->middleware(['auth', 'verified'])->name('linkUserToProject');
 
 Route::post('/project/finishPanel/{panel_id}', [PanelController::class, 'finish'])->middleware(['auth', 'verified'])->name('finishPanel');
@@ -41,5 +41,9 @@ Route::post('/project/editFeature/{feature_id}', [FeatureController::class, 'edi
 Route::get('/userlist', [DashboardController::class, 'index'])->middleware(['auth'])->name('userlist');
 Route::get('/userlist/edit/{user_id}', [DashboardController::class, 'edit'])->middleware(['auth'])->name('editUser');
 Route::get('/userlist/delete/{user_id}', [DashboardController::class, 'delete'])->middleware(['auth'])->name('deleteUser');
+
+Route::get('/access_denied', function() {
+    die("You shall not pass!!");
+})->name('access_denied');
 
 require __DIR__.'/auth.php';
