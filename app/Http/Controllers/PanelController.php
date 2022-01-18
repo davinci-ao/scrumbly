@@ -9,6 +9,14 @@ use App\Models\Feature;
 class PanelController extends Controller
 {
     
+    public function panelIndex($panel_id){
+        $panel = Panel::find($panel_id);
+        $features = $panel->features;
+        $project_id = $panel->project_id;
+
+        return view('panel', compact(['panel', 'features', 'project_id']));
+    }
+
     public function finish(Request $request, $panel_id)
     {
         $panel = Panel::find($panel_id);
