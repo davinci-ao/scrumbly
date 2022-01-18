@@ -33,12 +33,6 @@ class ProjectController extends Controller
         $features = Feature::all();
         return view('project', compact(['project', 'panels', 'features']));
     }
-    public function projectIndexID($project_id){
-        $project = Project::find($project_id);
-        $panels = $project->panels;
-        $features = Feature::all();
-        return view('project', compact(['project', 'panels', 'features']));
-    }
 
     public function edit(Request $request, $project_id){ 
         $project = Project::find($request->project_id);
