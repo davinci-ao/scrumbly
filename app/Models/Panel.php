@@ -14,4 +14,23 @@ class Panel extends Model
     public function features(){
         return $this->hasMany(Feature::class);
     }
+
+    /**
+     * createPanelTemplate, generates panels when creating a new project
+     *
+     * @param [string] $name
+     * @param [string] $type
+     * @param [int] $project_id
+     * @param [boolean] $active
+     * @return void
+     */
+    public function createTemplatePanel($name, $type, $project_id, $active)
+    {
+        $panel = new Panel;
+        $panel->name = $name;
+        $panel->type = $type;
+        $panel->project_id = $project_id;
+        $panel->active = $active;
+        $panel->save();
+    }
 }
