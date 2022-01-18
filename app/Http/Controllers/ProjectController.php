@@ -16,7 +16,13 @@ class ProjectController extends Controller
     }
 
     public function projectIndex($slug){
-        $project = Project::where('name', '=', $slug)->first();
+        $project = Project::where('slug', '=', $slug)->first();
+        $panels = $project->panels;
+        $features = Feature::all();
+        return view('project', compact(['project', 'panels', 'features']));
+    }
+    public function projectIndexID($project_id){
+        $project = Project::find($project_id);
         $panels = $project->panels;
         $features = Feature::all();
         return view('project', compact(['project', 'panels', 'features']));
@@ -28,6 +34,6 @@ class ProjectController extends Controller
         $project->discription = $request->discription;
         $project->slug = $request->slug;
         $project->save();
-        return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
+        return redirect()->route('projectIndex', ['slug' => $request->input('slug')]);
     }
 }
