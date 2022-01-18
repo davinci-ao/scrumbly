@@ -28,7 +28,6 @@ Route::get('/projects', [ProjectController::class, 'index'])->middleware(['auth'
 
 Route::get('/project/editProject/{project_id}', [ProjectController::class, 'edit'])->middleware(['auth'])->name('editProject');
 Route::get('/project/{slug}', [ProjectController::class, 'projectIndex'])->middleware(['auth'])->name('projectIndex');
-Route::get('/project/id/{project_id}', [ProjectController::class, 'projectIndexID'])->middleware(['auth'])->name('projectIndexID');
 
 Route::post('/project/finishPanel/{panel_id}', [PanelController::class, 'finishPanel'])->middleware(['auth'])->name('finishPanel');
 Route::post('/project/createPanel', [PanelController::class, 'createPanel'])->middleware(['auth'])->name('createPanel');
