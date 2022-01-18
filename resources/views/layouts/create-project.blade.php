@@ -10,8 +10,8 @@
           <div class="form-group">
             <label for="project-name" class="col-form-label">Project name:</label>
             <input type="text" class="form-control" id="name" name="name" required>
-            <label for="project-discription" class="col-form-label">Project discription:</label>
-            <input type="textarea" class="form-control" id="discription" name="discription" required>
+            <label for="project-description" class="col-form-label">Project description:</label>
+            <input type="textarea" class="form-control" id="description" name="description" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

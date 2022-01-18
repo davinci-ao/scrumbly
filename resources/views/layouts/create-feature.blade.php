@@ -11,9 +11,10 @@
             <label for="feature-name" class="col-form-label">Feature name:</label>
             <input type="text" class="form-control" id="name" name="name" required>
             <label for="feature-description" class="col-form-label">Feature description:</label>
-            <input type="description" class="form-control" id="descrription" name="description" required>
+            <input type="description" class="form-control" id="description" name="description" required>
             <label for="feature-name" class="col-form-label">Storypoint(s):</label>
-            <input type="hidden" id="project_id" name="project_id" value="{{ $project->id }}">
+            <input type="hidden" id="panel_id" name="panel_id" value="{{ $panel->id }}">
+            <input type="hidden" id="project_id" name="project_id" value="{{ $project_id }}">
             <div class="col-2">
                 <input type="number" class="form-control" id="storypoint" name="storypoint" required>
             </div>

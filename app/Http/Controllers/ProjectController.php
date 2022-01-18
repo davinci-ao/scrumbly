@@ -45,7 +45,7 @@ class ProjectController extends Controller
         $project = new Project;
         $panel = new Panel;
         $project->name = $request->input('name');
-        $project->discription = $request->input('discription');
+        $project->description= $request->input('description');
         $project->invite_link = 'invite_link';
         $project->team_id = 1;
         $project->save();
