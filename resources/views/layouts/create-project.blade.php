@@ -12,6 +12,8 @@
             <input type="text" class="form-control" id="name" name="name" required>
             <label for="project-description" class="col-form-label">Project description:</label>
             <input type="textarea" class="form-control" id="description" name="description" required>
+            <label for="project-slug" class="col-form-label">Project slug:</label>
+            <input type="text" class="form-control" id="slug" name="slug" minlength="4" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

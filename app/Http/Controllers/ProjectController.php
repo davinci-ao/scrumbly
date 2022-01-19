@@ -17,22 +17,38 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-
         return view('homepage', ['projects' => $projects]);
     }
 
     /**
      * projectIndex, collects all the projects and returns to the project page
      *
+     * @param [string] $slug
+     * @return view
+     */
+    public function projectIndex($slug){
+        $project = Project::where('slug', '=', $slug)->first();
+        $panels = $project->panels;
+        $features = Feature::all();
+        return view('project', compact(['project', 'panels', 'features']));
+    }
+
+    /**
+     * used to edit the values in a project
+     *
+     * @param Request $request
      * @param [int] $project_id
      * @return view
      */
-    public function projectIndex($project_id){
+    public function edit(Request $request, $project_id){ 
         $project = Project::find($project_id);
-        $panels = $project->panels;
-        $features = Feature::all();
-
-        return view('overview', compact(['project', 'panels', 'features']));
+        $project->name = $request->input('name');
+        $project->description = $request->input('description');
+        $project->slug = $request->input('slug');
+        $project->slug = str_replace(" ", "-", $project->slug);
+        $project->slug = strtolower($project->slug);
+        $project->save();
+        return redirect()->route('projectIndex', ['slug' => $project->slug]);
     }
 
     /**
@@ -46,6 +62,9 @@ class ProjectController extends Controller
         $panel = new Panel;
         $project->name = $request->input('name');
         $project->description= $request->input('description');
+        $project->slug = $request->input('slug');
+        $project->slug = str_replace(" ", "-", $project->slug);
+        $project->slug = strtolower($project->slug);
         $project->invite_link = 'invite_link';
         $project->team_id = 1;
         $project->save();
@@ -53,6 +72,6 @@ class ProjectController extends Controller
         $panel->createTemplatePanel('Sprint 1', 'Sprint', $project->id, true);
         $panel->createTemplatePanel('Suggestions', 'Suggestions', $project->id, true);
         
-        return redirect()->route('projectIndex', ['project_id' => $project->id]);
+        return redirect()->route('projectIndex', ['slug' => $project->slug]);
     }
 }
