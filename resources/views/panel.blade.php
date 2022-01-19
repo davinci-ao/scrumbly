@@ -1,3 +1,4 @@
+@include("layouts.create-feature")
 <x-app-layout>
     <x-slot name="header">
         <p class="font-semibold text-xl text-gray-800 leading-tight">

@@ -10,8 +10,8 @@
           <div class="form-group">
             <label for="project-name" class="col-form-label">Project name:</label>
             <input type="text" class="form-control" id="name" name="name" required>
-            <label for="project-discription" class="col-form-label">Project discription:</label>
-            <input type="textarea" class="form-control" id="discription" name="discription" required>
+            <label for="project-description" class="col-form-label">Project description:</label>
+            <input type="textarea" class="form-control" id="description" name="description" required>
             <label for="project-slug" class="col-form-label">Project slug:</label>
             <input type="text" class="form-control" id="slug" name="slug" minlength="4" required>
           </div>
