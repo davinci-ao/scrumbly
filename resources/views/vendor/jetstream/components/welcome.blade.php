@@ -22,7 +22,7 @@
 
                 <div class="ml-8">
                     <div class="mt-2 text-sm text-gray-500">
-                    {{ $project->discription }}
+                    {{ $project->description }}
                     </div>
 
                     <a href="{{ route('projectIndex', [$project->slug]) }}">
