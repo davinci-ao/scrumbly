@@ -13,7 +13,7 @@
             <label for="project-discription" class="col-form-label">Discription:</label>
             <input type="text" class="form-control" id="discription" name="discription" value="{{ $project->discription }}">
             <label for="project-slug" class="col-form-label">Slug:</label>
-            <input type="text" class="form-control" id="slug" name="slug" value="{{ $project->slug }}">
+            <input type="text" class="form-control" id="slug" name="slug" value="{{ $project->slug }}" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

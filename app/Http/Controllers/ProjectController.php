@@ -17,7 +17,6 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-
         return view('homepage', ['projects' => $projects]);
     }
 
@@ -35,12 +34,14 @@ class ProjectController extends Controller
     }
 
     public function edit(Request $request, $project_id){ 
-        $project = Project::find($request->project_id);
-        $project->name = $request->name;
-        $project->discription = $request->discription;
-        $project->slug = $request->slug;
+        $project = Project::find($project_id);
+        $project->name = $request->input('name');
+        $project->discription = $request->input('discription');
+        $project->slug = $request->input('slug');
+        $project->slug = str_replace(" ", "-", $project->slug);
+        $project->slug = strtolower($project->slug);
         $project->save();
-        return redirect()->route('projectIndex', ['slug' => $request->input('slug')]);
+        return redirect()->route('projectIndex', ['slug' => $project->slug]);
     }
 
     /**
@@ -54,6 +55,9 @@ class ProjectController extends Controller
         $panel = new Panel;
         $project->name = $request->input('name');
         $project->discription = $request->input('discription');
+        $project->slug = $request->input('slug');
+        $project->slug = str_replace(" ", "-", $project->slug);
+        $project->slug = strtolower($project->slug);
         $project->invite_link = 'invite_link';
         $project->team_id = 1;
         $project->save();
@@ -61,6 +65,6 @@ class ProjectController extends Controller
         $panel->createTemplatePanel('Sprint 1', 'Sprint', $project->id, true);
         $panel->createTemplatePanel('Suggestions', 'Suggestions', $project->id, true);
         
-        return redirect()->route('projectIndex', ['project_id' => $project->id]);
+        return redirect()->route('projectIndex', ['slug' => $project->slug]);
     }
 }
