@@ -9,11 +9,11 @@
         @csrf
           <div class="form-group">
             <label for="project-name" class="col-form-label">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ $project->name }}" required>
+            <input type="text" class="form-control" id="name" name="name" value="{{ $project->name }}" minlength="4" maxlength="64" required>
             <label for="project-description" class="col-form-label">description:</label>
-            <input type="text" class="form-control" id="description" name="description" value="{{ $project->description }}">
+            <input type="text" class="form-control" id="description" name="description" value="{{ $project->description }}" maxlength="999">
             <label for="project-slug" class="col-form-label">Slug:</label>
-            <input type="text" class="form-control" id="slug" name="slug" value="{{ $project->slug }}" required>
+            <input type="text" class="form-control" id="slug" name="slug" value="{{ $project->slug }}" minlength="4" maxlength="64" required>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

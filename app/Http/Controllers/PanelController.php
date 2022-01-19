@@ -37,7 +37,7 @@ class PanelController extends Controller
         $panel->active = false;
         $panel->save();
     
-        return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
+        return redirect()->route('projectIndex', ['slug' => $request->input('project_slug')]);
     }
 
     /**
@@ -54,8 +54,8 @@ class PanelController extends Controller
         $panel->project_id = $request->input('project_id');
         $panel->active = true;
         $panel->save();
-        
-        return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
+
+        return redirect()->route('projectIndex', ['slug' => $request->input('project_slug')]);
     }
 
     /**
@@ -71,7 +71,7 @@ class PanelController extends Controller
         $panel->name = $request->name;
         $panel->save();
         
-        return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
+        return redirect()->route('projectIndex', ['slug' => $request->input('project_slug')]);
     }
 
     /**
@@ -90,6 +90,6 @@ class PanelController extends Controller
         }
         Panel::where('id', $panel_id)->delete();
         
-        return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
+        return redirect()->route('projectIndex', ['slug' => $request->input('project_slug')]);
     }
 }

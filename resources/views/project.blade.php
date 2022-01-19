@@ -1,4 +1,3 @@
-@include("layouts.create-feature")
 @include("layouts.create-panel")
 @include("layouts.edit-project")
 
@@ -17,12 +16,10 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg row">
-            <h3 class="m-3">Panels</h3>
-            @if($panels != null)
+                <h3 class="m-3">Panels</h3>
                 @foreach($panels as $panel)
                     @include('layouts.panel', ['panel' => $panel])
                 @endforeach
-            @endif
             </div>
         </div>
     </div>

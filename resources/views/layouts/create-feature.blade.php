@@ -1,4 +1,4 @@
-<div class="modal fade" id="addNewFeature" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addNewFeature{{ $panel }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,9 +9,9 @@
         @csrf
           <div class="form-group">
             <label for="feature-name" class="col-form-label">Feature name:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" minlength="4" maxlength="64" required>
             <label for="feature-description" class="col-form-label">Feature description:</label>
-            <input type="description" class="form-control" id="description" name="description" required>
+            <input type="description" class="form-control" id="description" name="description" maxlength="999" required>
             <label for="feature-name" class="col-form-label">Storypoint(s):</label>
             <input type="hidden" id="panel_id" name="panel_id" value="{{ $panel->id }}">
             <input type="hidden" id="project_id" name="project_id" value="{{ $project_id }}">
