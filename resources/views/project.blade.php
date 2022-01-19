@@ -8,10 +8,6 @@
             {{ $project->name }} <i class="fa-solid fa-pen-to-square"></i>
         </x-nav-link>
 
-        <x-nav-link data-toggle="modal" data-target="#addNewFeature" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
-            {{ __('Add a new Feature') }}
-        </x-nav-link>
-
         <x-nav-link data-toggle="modal" data-target="#addNewPanel" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
             {{ __('Add a new Panel') }}
         </x-nav-link>
