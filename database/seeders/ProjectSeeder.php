@@ -18,6 +18,7 @@ class ProjectSeeder extends Seeder
             'name' => 'project1',
             'invite_link' => 'project1_invite_link',
             'description' => 'Beschrijving',
+            'slug' => 'project1',
             'team_id' => 1,
         ]);
 
@@ -25,6 +26,7 @@ class ProjectSeeder extends Seeder
             'name' => 'project2',
             'invite_link' => 'project2_invite_link',
             'description' => 'Beschrijving',
+            'slug' => 'project2',
             'team_id' => 2,
         ]);
     }
