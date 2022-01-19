@@ -8,7 +8,13 @@ use App\Models\Feature;
 
 class PanelController extends Controller
 {
-    
+
+    /**
+     * panelIndex, returns the panel page
+     *
+     * @param [int] $panel_id
+     * @return void
+     */
     public function panelIndex($panel_id){
         $panel = Panel::find($panel_id);
         $features = $panel->features;
@@ -17,6 +23,13 @@ class PanelController extends Controller
         return view('panel', compact(['panel', 'features', 'project_id']));
     }
 
+    /**
+     * finish, changes the panel from active to archived by changing active to false
+     *
+     * @param Request $request
+     * @param [int] $panel_id
+     * @return view
+     */
     public function finish(Request $request, $panel_id)
     {
         $panel = Panel::find($panel_id);
@@ -26,6 +39,12 @@ class PanelController extends Controller
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
+    /**
+     * create, creates a panel
+     *
+     * @param Request $request
+     * @return view
+     */
     public function create(Request $request)
     {
         $panel = new Panel;
@@ -38,6 +57,13 @@ class PanelController extends Controller
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
+    /**
+     * edit, edits a panel
+     *
+     * @param Request $request
+     * @param [int] $panel_id
+     * @return view
+     */
     public function edit(Request $request, $panel_id)
     {
         $panel = Panel::find($panel_id);
@@ -47,6 +73,13 @@ class PanelController extends Controller
         return redirect()->route('projectIndex', ['project_id' => $request->input('project_id')]);
     }
 
+    /**
+     * delete, deletes a panel
+     *
+     * @param Request $request
+     * @param [int] $panel_id
+     * @return view
+     */
     public function delete(Request $request, $panel_id)
     {
         $panel = Panel::find($panel_id);
