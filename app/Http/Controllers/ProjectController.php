@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Panel;
 use App\Models\Feature;
+use Validator;
 
 class ProjectController extends Controller
 {
@@ -41,10 +42,27 @@ class ProjectController extends Controller
      * @return view
      */
     public function edit(Request $request, $project_id){ 
+        $rules = [
+            'name'    => 'required',
+            'slug'    => 'required | unique:projects',
+        ];
+
+        $data = [
+            'slug.unique' => 'This slug has already been taken.',
+        ];
+
+        $validate = Validator::make($request->all(),$rules,$data);
+
+        if($validate->fails())
+        {
+            return redirect()->back()->withErrors($validate->errors())->withInput(); // does not show error
+        }
+
         $project = Project::find($project_id);
         $project->name = $request->input('name');
         $project->description = $request->input('description');
         $project->slug = $request->input('slug');
+        if($request->input('slug'))
         $project->slug = str_replace(" ", "-", $project->slug);
         $project->slug = strtolower($project->slug);
         $project->save();
@@ -58,6 +76,22 @@ class ProjectController extends Controller
      * @return view
      */
     public function create(Request $request){
+        $rules = [
+            'name'    => 'required',
+            'slug'    => 'required | unique:projects',
+        ];
+
+        $data = [
+            'slug.unique' => 'This slug has already been taken.',
+        ];
+
+        $validate = Validator::make($request->all(),$rules,$data);
+
+        if($validate->fails())
+        {
+            return redirect()->back()->withErrors($validate->errors())->withInput(); // does not show error
+        }
+        
         $project = new Project;
         $panel = new Panel;
         $project->name = $request->input('name');
