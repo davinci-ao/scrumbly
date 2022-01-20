@@ -28,8 +28,12 @@ class ProjectController extends Controller
      */
     public function projectIndex($slug){
         $project = Project::where('slug', '=', $slug)->first();
+        if($project == null){
+            return redirect()->route('homepage');
+        }
         $panels = $project->panels;
         $features = Feature::all();
+        
         return view('project', compact(['project', 'panels', 'features']));
     }
 
