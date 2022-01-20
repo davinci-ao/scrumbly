@@ -29,7 +29,7 @@ class ProjectController extends Controller
      */
     public function projectIndex($slug){
         $project = Project::where('slug', '=', $slug)->first();
-        if($project == null){
+        if(!$project){
             return redirect()->route('homepage');
         }
         $panels = $project->panels;
