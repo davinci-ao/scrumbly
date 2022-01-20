@@ -5,9 +5,9 @@
         </x-nav-link>
         <form method="post" action="{{ route('finishPanel', [$panel->id]) }}">
             {{ csrf_field() }}
-            <input type="hidden" id="project_id" name="project_id" value="{{ $project->id }}">
+            <input type="hidden" id="project_slug" name="project_slug" value="{{ $project->slug }}">
             <button class="btn btn-primary" type="submit">Finish</button>    
-            @if($panel->active == false)
+            @if(!$panel->active)
                 finished
             @endif
         </form>
