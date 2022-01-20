@@ -15,7 +15,6 @@ class PanelController extends Controller
      * @param [int] $panel_id
      * @return void
      */
-    
     public function panelIndex($panel_id){
         $panel = Panel::find($panel_id);
         $features = $panel->features;
@@ -46,6 +45,7 @@ class PanelController extends Controller
      * @param Request $request
      * @return view
      */
+
     public function create(Request $request)
     {
         $panel = new Panel;
@@ -70,7 +70,7 @@ class PanelController extends Controller
         $panel = Panel::find($panel_id);
         $panel->name = $request->name;
         $panel->save();
-        
+
         return redirect()->route('projectIndex', ['slug' => $request->input('project_slug')]);
     }
 
