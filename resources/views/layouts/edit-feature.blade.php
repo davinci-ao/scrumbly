@@ -11,12 +11,13 @@
             <label for="feature-name" class="col-form-label">Feature name:</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $feature->name }}" minlength="4" maxlength="64" required>
             <label for="feature-description" class="col-form-label">Feature description:</label>
-            <input type="description" class="form-control" id="description" name="description" value="{{ $feature->description }}" maxlength="999" required>
+            <textarea class="form-control" name="description" id="description" required rows="3">{{ $feature->description }}
+            </textarea>
             <label for="feature-name" class="col-form-label">Storypoint(s):</label>
             <input type="hidden" id="project_id" name="project_id" value="{{ $project_id }}">
             <input type="hidden" id="panel_id" name="panel_id" value="{{ $panel->id }}">
             <div class="col-2">
-                <input type="number" class="form-control" id="storypoint" name="storypoints" value="{{ $feature->storypoints }}" required>
+              <input type="number" class="form-control" id="storypoint" name="storypoints" value="{{ $feature->storypoints }}" required>
             </div>
           </div>
           <div class="modal-footer">
