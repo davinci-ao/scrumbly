@@ -44,4 +44,8 @@ Route::get('/userlist', [DashboardController::class, 'index'])->middleware(['aut
 Route::get('/userlist/edit/{user_id}', [DashboardController::class, 'edit'])->middleware(['auth'])->name('editUser');
 Route::get('/userlist/delete/{user_id}', [DashboardController::class, 'delete'])->middleware(['auth'])->name('deleteUser');
 
+Route::get('/access_denied', function() {
+    die("You shall not pass!!");
+})->name('access_denied');
+
 require __DIR__.'/auth.php';

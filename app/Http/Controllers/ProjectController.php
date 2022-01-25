@@ -6,18 +6,22 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Panel;
 use App\Models\Feature;
+use App\Models\ProjectUser;
+use Auth;
 use Validator;
 
 class ProjectController extends Controller
 {
     /**
-     * index, collects all the projects and returns to homepage
+     * index, displays your projects in homepage
      *
      * @return view
      */
     public function index()
     {
-        $projects = Project::all();
+        $project_ids = ProjectUser::select('project_id')->where('user_id', Auth::id())->get();
+        $projects = Project::whereIn('id', $project_ids)->get();
+        
         return view('homepage', ['projects' => $projects]);
     }
 
@@ -111,5 +115,15 @@ class ProjectController extends Controller
         $panel->createTemplatePanel('Suggestions', 'Suggestions', $project->id, true);
         
         return redirect()->route('projectIndex', ['slug' => $project->slug]);
+    }
+
+    public function user($project_id)
+    {
+        $project_user = new Projectuser;
+        $user_id = Auth::user()->id;
+
+        $project_user->user_id = $user_id;
+        $project_user->project_id = $project_id;
+        $project_user->save();
     }
 }
