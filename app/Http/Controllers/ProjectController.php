@@ -38,8 +38,9 @@ class ProjectController extends Controller
         }
         $panels = $project->panels;
         $features = Feature::all();
-        
-        return view('project', compact(['project', 'panels', 'features']));
+        $role = ProjectUser::where([['project_slug', $slug], ['user_id', Auth::id()]])->value('role_id');
+
+        return view('project', compact(['project', 'panels', 'features', 'role']));
     }
 
     /**
