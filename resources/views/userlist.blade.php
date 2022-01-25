@@ -7,25 +7,25 @@
             </h2>
         </x-slot>
         
-        <div class='userlistContainer'>
-            <h1>Superadmin</h1>
-            <div class='userblockContainer'>
+        <div class='row m-0'>
+            <div class='col-4 row align-content-start mt-4'>
+            <h2>Superadmin</h2>
                 @foreach($users as $user)
                     @if($user->rights == 'superadmin')
                         @include('layouts.user', ['user' => $user])
                     @endif
                 @endforeach
             </div>
-            <h1>Admins</h1>
-            <div class='userblockContainer'>
+            <div class='col-4 row align-content-start mt-4'>
+            <h2>Admins</h2>
                 @foreach($users as $user)
                     @if($user->rights == 'admin')
                         @include('layouts.user', ['user' => $user])
                     @endif
                 @endforeach
             </div>
-            <h1>Users</h1>
-            <div class='userblockContainer'>
+            <div class='col-4 row align-content-start mt-4'>
+            <h2>Users</h2>
                 @foreach($users as $user)
                     @if($user->rights == 'user')
                         @include('layouts.user', ['user' => $user])
