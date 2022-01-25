@@ -142,7 +142,7 @@ CREATE TABLE `projects` (
                             `id` bigint UNSIGNED NOT NULL,
                             `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
                             `invite_link` text COLLATE utf8mb4_unicode_ci NOT NULL,
-                            `discription` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                            `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
                             `team_id` int NOT NULL,
                             `created_at` timestamp NULL DEFAULT NULL,
                             `updated_at` timestamp NULL DEFAULT NULL
@@ -152,7 +152,7 @@ CREATE TABLE `projects` (
 -- Gegevens worden geëxporteerd voor tabel `projects`
 --
 
-INSERT INTO `projects` (`id`, `name`, `invite_link`, `discription`, `team_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `projects` (`id`, `name`, `invite_link`, `description`, `team_id`, `created_at`, `updated_at`) VALUES
                                                                                                                (1, 'project1', 'project1_invite_link', 'Beschrijving', 1, NULL, NULL),
                                                                                                                (2, 'project2', 'project2_invite_link', 'Beschrijving', 2, NULL, NULL);
 

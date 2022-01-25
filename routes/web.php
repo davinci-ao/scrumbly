@@ -25,10 +25,12 @@ Route::get('/', function () {
 
 Route::get('/homepage', [ProjectController::class, 'index'])->middleware(['auth'])->name('homepage');
 
+Route::post('/homepage/createProject', [ProjectController::class, 'create'])->middleware(['auth', 'verified'])->name('createProject');
 Route::get('/projects', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('projects');
-Route::get('/project/{project_id}', [ProjectController::class, 'projectIndex'])->middleware(['auth', 'verified', 'role.system:role_goes_here'])->name('projectIndex');
-Route::get('/project/add-user/{project_id}', [ProjectController::class, 'user'])->middleware(['auth', 'verified'])->name('linkUserToProject');
+Route::get('/project/{slug}', [ProjectController::class, 'projectIndex'])->middleware(['auth'])->name('projectIndex');
+Route::get('/project/{slug}/edit', [ProjectController::class, 'edit'])->middleware(['auth'])->name('editProject');
 
+Route::get('/project/panel/{panel_id}', [PanelController::class, 'panelIndex'])->middleware(['auth', 'verified'])->name('panelIndex');
 Route::post('/project/finishPanel/{panel_id}', [PanelController::class, 'finish'])->middleware(['auth', 'verified'])->name('finishPanel');
 Route::post('/project/createPanel', [PanelController::class, 'create'])->middleware(['auth', 'verified'])->name('createPanel');
 Route::post('/project/editPanel/{panel_id}', [PanelController::class, 'edit'])->middleware(['auth', 'verified'])->name('editPanel');
