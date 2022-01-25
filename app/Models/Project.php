@@ -22,23 +22,8 @@ class Project extends Model
         return $this->belongsToMany(User::class, 'project_role_user', 'id', 'user_id')->withPivot('role_id', 'project_id');
     }
 
-    public function currentUserRoles()
+    public function projectusers()
     {
-        $current_user_id = Auth::id();
-        if($current_user_id == null) {
-            // niet ingelogd
-            return [];
-        }
-        $project_id = $this->id;
-        if($project_id == null) {
-            // geen instance van project. statisch aangeroepen?
-            return [];
-        }
-        $results = DB::table('project_role_user')->select('role_id')->where([['user_id', "=", $current_user_id], ['project_id', '=', $project_id]]);
-        if($results == null) {
-            // geen roles
-            return [];
-        }
-        return $results;
+        return $this->hasMany(ProjectUser::class);
     }
 }

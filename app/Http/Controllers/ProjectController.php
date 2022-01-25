@@ -6,14 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Panel;
 use App\Models\Feature;
-use App\Models\Projectuser;
+use App\Models\ProjectUser;
 use Auth;
 
 class ProjectController extends Controller
 {
+    /**
+     * index, displays your projects in homepage
+     *
+     * @return view
+     */
     public function index()
     {
-        $projects = Project::all();
+        $project_ids = ProjectUser::select('project_id')->where('user_id', Auth::id())->get();
+        $projects = Project::whereIn('id', $project_ids)->get();
+        
         return view('homepage', ['projects' => $projects]);
     }
 
