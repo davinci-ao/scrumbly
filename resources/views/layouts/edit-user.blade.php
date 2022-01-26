@@ -12,6 +12,18 @@
             <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
             <label for="user-email" class="col-form-label">Email:</label>
             <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
+            @if(Auth::user()->rights == 'superadmin')
+              <label for="user-rights" class="col-form-label">Rights:</label>
+              <select class="form-control" id="rights" name="rights" multiple>
+                @if($user->rights == 'admin')
+                  <option value="admin" selected>Admin</option>
+                  <option value="user">User</option>
+                @else
+                  <option value="admin">Admin</option>
+                  <option value="user" selected>User</option>
+                @endif
+              </select>
+            @endif
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
