@@ -5,7 +5,7 @@
         <h5 class="modal-title" id="deletePanelLabel">Weet je zeker dat je {{ $panel->name }} wilt verwijderen?</h5>
       </div>
       <div class="modal-body">
-        <form method='post' action="{{ route('deletePanel', [$panel->id] ) }}">
+        <form method='post' action="{{ route('deletePanel', ['slug' => $project->slug, 'panel_id' => $panel->id]) }}">
         @csrf
           <div class="d-flex justify-content-center">
             <input type="hidden" id="project_slug" name="project_slug" value="{{ $project->slug }}">

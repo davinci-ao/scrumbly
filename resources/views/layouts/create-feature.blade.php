@@ -5,7 +5,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Add new Feature </h5>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{route('createFeature')}}">
+        <form method="post" action="{{route('createFeature', [$project->slug])}}">
         @csrf
           <div class="form-group">
             <label for="feature-name" class="col-form-label">Feature name:</label>
@@ -14,7 +14,6 @@
             <textarea class="form-control" name="description" id="description" required rows="3" placeholder="Slices &#10;Testcases"></textarea>
             <label for="feature-name" class="col-form-label">Storypoint(s):</label>
             <input type="hidden" id="panel_id" name="panel_id" value="{{ $panel->id }}">
-            <input type="hidden" id="project_id" name="project_id" value="{{ $project_id }}">
             <div class="col-2">
                 <input type="number" class="form-control" id="storypoint" name="storypoint" required>
             </div>
