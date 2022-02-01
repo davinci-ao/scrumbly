@@ -34,7 +34,7 @@ class ProjectController extends Controller
      * @return view
      */
     public function projectIndex($slug){
-        $project = Project::where('slug', '=', $slug)->first();
+        $project = Project::where('slug', $slug)->first();
         if(!$project){
             return redirect()->route('homepage');
         }
@@ -148,9 +148,40 @@ class ProjectController extends Controller
     {
         $project_user = new Projectuser;
         $user_id = Auth::user()->id;
-
         $project_user->user_id = $user_id;
         $project_user->project_id = $project_id;
         $project_user->save();
+    }
+
+    //member equals the user in a project 
+    
+    /**
+     * editMember, edits the member
+     *
+     * @param Request $request
+     * @param [string] $slug
+     * @param [int] $member_id
+     * @return view
+     */
+    public function editMember(Request $request, $slug, $member_id){
+        $project_user = ProjectUser::find($member_id);
+        $role_id = Roles::where('name', $request->role)->value('id');
+        $project_user->role_id = $role_id;
+        $project_user->save();
+
+        return redirect()->route('projectIndex', $slug);
+    }
+
+    /**
+     * deleteMember, deletes the member from the project
+     *
+     * @param [string] $slug
+     * @param [int] $member_id
+     * @return view
+     */
+    public function deleteMember($slug, $member_id){
+        ProjectUser::find($member_id)->delete();
+        
+        return redirect()->route('projectIndex', $slug);
     }
 }
