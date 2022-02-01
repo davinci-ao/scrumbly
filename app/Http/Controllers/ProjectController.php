@@ -7,6 +7,8 @@ use App\Models\Project;
 use App\Models\Panel;
 use App\Models\Feature;
 use App\Models\ProjectUser;
+use App\Models\User;
+use App\Models\Roles;
 use Auth;
 use Validator;
 
@@ -32,15 +34,24 @@ class ProjectController extends Controller
      * @return view
      */
     public function projectIndex($slug){
-        $project = Project::where('slug', '=', $slug)->first();
+        $project = Project::where('slug', $slug)->first();
         if(!$project){
             return redirect()->route('homepage');
         }
         $panels = $project->panels;
         $features = Feature::all();
         $role = ProjectUser::where([['project_slug', $slug], ['user_id', Auth::id()]])->value('role_id');
+        $member_id = Projectuser::where('project_id', $project->id)->pluck('user_id');
+        $members = User::whereIn('id', $member_id)->get();
+        $allRoles = Roles::all();
+        foreach($members as $member){
+            $role_id = ProjectUser::where('user_id', $member->id)->value('role_id');
+            $role_name = Roles::where('id', $role_id)->value('name');
+            $member->role_id = $role_id;
+            $member->role = $role_name;
+        }
 
-        return view('project', compact(['project', 'panels', 'features', 'role']));
+        return view('project', compact(['project', 'panels', 'features', 'role', 'members', 'allRoles']));
     }
 
     /**
@@ -81,7 +92,6 @@ class ProjectController extends Controller
             $projectUser->project_slug = $project->slug;
             $projectUser->save();
         }
-        
 
         return redirect()->route('projectIndex', ['slug' => $project->slug]);
     }
@@ -138,9 +148,40 @@ class ProjectController extends Controller
     {
         $project_user = new Projectuser;
         $user_id = Auth::user()->id;
-
         $project_user->user_id = $user_id;
         $project_user->project_id = $project_id;
         $project_user->save();
+    }
+
+    //member equals the user in a project 
+    
+    /**
+     * editMember, edits the member
+     *
+     * @param Request $request
+     * @param [string] $slug
+     * @param [int] $member_id
+     * @return view
+     */
+    public function editMember(Request $request, $slug, $member_id){
+        $project_user = ProjectUser::find($member_id);
+        $role_id = Roles::where('name', $request->role)->value('id');
+        $project_user->role_id = $role_id;
+        $project_user->save();
+
+        return redirect()->route('projectIndex', $slug);
+    }
+
+    /**
+     * deleteMember, deletes the member from the project
+     *
+     * @param [string] $slug
+     * @param [int] $member_id
+     * @return view
+     */
+    public function deleteMember($slug, $member_id){
+        ProjectUser::find($member_id)->delete();
+        
+        return redirect()->route('projectIndex', $slug);
     }
 }
