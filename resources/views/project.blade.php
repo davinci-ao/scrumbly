@@ -23,4 +23,17 @@
             </div>
         </div>
     </div>
+
+    <div class="row m-2 bg-white shadow-xl rounded col-12 col-md-6 col-lg-4">
+        @foreach($allRoles as $scrumRole)
+            <h3 class="m-3">{{ $scrumRole->name }}</h3>
+            @foreach($members as $member)
+                @if($member->role_id == $scrumRole->id)
+                    <div class="row m-2 bg-black text-white shadow-xl rounded col-12 col-md-6 col-lg-4">
+                        <p>{{ $member->name }}</p>
+                    </div>
+                @endif
+            @endforeach
+        @endforeach
+    </div>
 </x-app-layout>

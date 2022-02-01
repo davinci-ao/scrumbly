@@ -7,6 +7,8 @@ use App\Models\Project;
 use App\Models\Panel;
 use App\Models\Feature;
 use App\Models\ProjectUser;
+use App\Models\User;
+use App\Models\Roles;
 use Auth;
 use Validator;
 
@@ -39,8 +41,17 @@ class ProjectController extends Controller
         $panels = $project->panels;
         $features = Feature::all();
         $role = ProjectUser::where([['project_slug', $slug], ['user_id', Auth::id()]])->value('role_id');
-        $members = Projectuser::where('project_id', $project->id)->get();
-        return view('project', compact(['project', 'panels', 'features', 'role', 'members']));
+        $member_id = Projectuser::where('project_id', $project->id)->pluck('user_id');
+        $members = User::whereIn('id', $member_id)->get();
+        $allRoles = Roles::all();
+        foreach($members as $member){
+            $role_id = ProjectUser::where('user_id', $member->id)->value('role_id');
+            $role_name = Roles::where('id', $role_id)->value('name');
+            $member->role_id = $role_id;
+            $member->role = $role_name;
+        }
+
+        return view('project', compact(['project', 'panels', 'features', 'role', 'members', 'allRoles']));
     }
 
     /**
@@ -81,7 +92,6 @@ class ProjectController extends Controller
             $projectUser->project_slug = $project->slug;
             $projectUser->save();
         }
-        
 
         return redirect()->route('projectIndex', ['slug' => $project->slug]);
     }
