@@ -15,7 +15,7 @@ use Validator;
 class ProjectController extends Controller
 {
     /**
-     * index, displays your projects in homepage
+     * index, collects all the projects and returns to homepage
      *
      * @return view
      */
@@ -82,6 +82,7 @@ class ProjectController extends Controller
         $project->name = $request->input('name');
         $project->description = $request->input('description');
         $project->slug = $request->input('slug');
+        if($request->input('slug'))
         $project->slug = str_replace(" ", "-", $project->slug);
         $project->slug = strtolower($project->slug);
         $project->save();
@@ -120,6 +121,7 @@ class ProjectController extends Controller
         }
         
         $project = new Project;
+        $panel = new Panel;
         $project->name = $request->input('name');
         $project->description= $request->input('description');
         $project->slug = $request->input('slug');
@@ -128,19 +130,10 @@ class ProjectController extends Controller
         $project->invite_link = 'invite_link';
         $project->team_id = 1;
         $project->save();
-        
-        $projectUser = new ProjectUser;
-        $projectUser->project_id = $project->id;
-        $projectUser->project_slug = $project->slug;
-        $projectUser->user_id = Auth::id();
-        $projectUser->role_id = '4';
-        $projectUser->save();
-
-        $panel = new Panel;
         $panel->createTemplatePanel('Product Backlog', 'Backlog', $project->id, true);
         $panel->createTemplatePanel('Sprint 1', 'Sprint', $project->id, true);
         $panel->createTemplatePanel('Suggestions', 'Suggestions', $project->id, true);
-
+        
         return redirect()->route('projectIndex', ['slug' => $project->slug]);
     }
     
