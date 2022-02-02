@@ -143,7 +143,13 @@ class ProjectController extends Controller
 
         return redirect()->route('projectIndex', ['slug' => $project->slug]);
     }
-
+    
+    /**
+     * no one knows what the purpose is
+     *
+     * @param [int] $project_id
+     * @return view
+     */
     public function user($project_id)
     {
         $project_user = new Projectuser;
