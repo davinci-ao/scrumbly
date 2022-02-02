@@ -18,7 +18,7 @@ class FeatureController extends Controller
         $feature->panel_id = $request->input('panel_id');
         $feature->save();
 
-        return redirect()->route('panelIndex', ['slug' => $slug, 'panel_id' => $request->input('panel_id')]);
+        return redirect()->route('panelIndex', ['panel_id' => $request->input('panel_id')]);
     }
 
     public function edit(Request $request, $slug, $feature_id){ 
@@ -28,11 +28,11 @@ class FeatureController extends Controller
         $feature->storypoints = $request->storypoints;
         $feature->save();
 
-        return redirect()->route('panelIndex', ['slug' => $slug, 'panel_id' => $request->input('panel_id')]);
+        return redirect()->route('panelIndex', ['panel_id' => $request->input('panel_id')]);
     }
 
     public function delete(Request $request, $slug, $feature_id){
         Feature::where('id', $feature_id)->delete();
-        return redirect()->route('panelIndex', ['slug' => $slug, 'panel_id' => $request->input('panel_id')]);
+        return redirect()->route('panelIndex', ['panel_id' => $request->input('panel_id')]);
     }
 }
