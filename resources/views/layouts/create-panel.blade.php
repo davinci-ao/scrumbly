@@ -5,7 +5,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Add new Panel</h5>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{route('createPanel')}}">
+        <form method="post" action="{{route('createPanel', [$project->slug])}}">
         @csrf
           <div class="form-group">
             <label for="playlist-name" class="col-form-label">Panel name:</label>

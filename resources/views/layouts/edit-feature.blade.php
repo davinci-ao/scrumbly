@@ -5,7 +5,7 @@
         <h5 class="modal-title" id="editFeatureLabel">Edit Feature </h5>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{route('editFeature', [$feature->id])}}">
+        <form method="post" action="{{route('editFeature', ['slug' => $project->slug, $feature->id])}}">
         @csrf
           <div class="form-group">
             <label for="feature-name" class="col-form-label">Feature name:</label>
@@ -16,7 +16,7 @@
             <input type="hidden" id="project_id" name="project_id" value="{{ $project_id }}">
             <input type="hidden" id="panel_id" name="panel_id" value="{{ $panel->id }}">
             <div class="col-2">
-                <input type="number" class="form-control" id="storypoint" name="storypoints" value="{{ $feature->storypoints }}" required>
+              <input type="number" class="form-control" id="storypoint" name="storypoints" value="{{ $feature->storypoints }}" required>
             </div>
           </div>
           <div class="modal-footer">

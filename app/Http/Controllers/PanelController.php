@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Project;
 use App\Models\Panel;
 use App\Models\Feature;
 
@@ -48,10 +49,11 @@ class PanelController extends Controller
 
     public function create(Request $request)
     {
+        $project = Project::where('slug', '=', $slug)->first();
         $panel = new Panel;
         $panel->name = $request->input('name');
         $panel->type = 'Sprint';
-        $panel->project_id = $request->input('project_id');
+        $panel->project_id = $project->id;
         $panel->active = true;
         $panel->save();
 

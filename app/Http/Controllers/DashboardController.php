@@ -19,6 +19,9 @@ class DashboardController extends Controller
         $user = User::find($user_id);
         $user->name = $request->name;
         $user->email = $request->email;
+        if($request->rights){
+            $user->rights = $request->rights;
+        }
         $user->save();
         
         return redirect()->route('userlist');

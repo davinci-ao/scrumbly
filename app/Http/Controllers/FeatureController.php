@@ -8,7 +8,7 @@ use App\Models\Panel;
 
 class FeatureController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request, $slug)
     {
         $feature = new Feature;
         $feature->name = $request->input('name');
@@ -21,7 +21,7 @@ class FeatureController extends Controller
         return redirect()->route('panelIndex', ['panel_id' => $request->input('panel_id')]);
     }
 
-    public function edit(Request $request, $feature_id){ 
+    public function edit(Request $request, $slug, $feature_id){ 
         $feature = Feature::find($request->feature_id);
         $feature->name = $request->name;
         $feature->description = $request->description;
@@ -31,7 +31,7 @@ class FeatureController extends Controller
         return redirect()->route('panelIndex', ['panel_id' => $request->input('panel_id')]);
     }
 
-    public function delete(Request $request,  $feature_id){
+    public function delete(Request $request, $slug, $feature_id){
         Feature::where('id', $feature_id)->delete();
         return redirect()->route('panelIndex', ['panel_id' => $request->input('panel_id')]);
     }

@@ -5,7 +5,7 @@
         <h5 class="modal-title" id="exampleModalLabel">Add new Feature </h5>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{route('createFeature')}}">
+        <form method="post" action="{{route('createFeature', [$project->slug])}}">
         @csrf
           <div class="form-group">
             <label for="feature-name" class="col-form-label">Feature name:</label>

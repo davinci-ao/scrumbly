@@ -17,7 +17,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $project_ids = ProjectUser::select('project_id')->where('user_id', Auth::id())->get();
+        $projects = Project::whereIn('id', $project_ids)->get();
+        
         return view('homepage', ['projects' => $projects]);
     }
 
