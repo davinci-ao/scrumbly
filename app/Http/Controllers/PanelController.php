@@ -18,10 +18,7 @@ class PanelController extends Controller
      * @return void
      */
     public function panelIndex($slug, $panel_id){
-<<<<<<< HEAD
         $project = Project::where('slug', '=', $slug)->first();
-=======
->>>>>>> dev
         $panel = Panel::find($panel_id);
         $features = $panel->features;
         $project_id = $panel->project_id;
