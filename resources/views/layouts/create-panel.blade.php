@@ -11,7 +11,6 @@
             <label for="playlist-name" class="col-form-label">Panel name:</label>
             <input type="text" class="form-control" id="name" name="name" minlength="4" maxlength="64" required>
             <input type="hidden" id="project_id" name="project_id" value="{{ $project->id }}">
-            <input type="hidden" id="project_slug" name="project_slug" value="{{ $project->slug }}">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
