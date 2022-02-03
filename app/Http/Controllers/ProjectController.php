@@ -82,7 +82,6 @@ class ProjectController extends Controller
         $project->name = $request->input('name');
         $project->description = $request->input('description');
         $project->slug = $request->input('slug');
-        if($request->input('slug'))
         $project->slug = str_replace(" ", "-", $project->slug);
         $project->slug = strtolower($project->slug);
         $project->save();
@@ -122,6 +121,7 @@ class ProjectController extends Controller
         
         $project = new Project;
         $panel = new Panel;
+        $project_user = new ProjectUser;
         $project->name = $request->input('name');
         $project->description= $request->input('description');
         $project->slug = $request->input('slug');
@@ -130,6 +130,11 @@ class ProjectController extends Controller
         $project->invite_link = 'invite_link';
         $project->team_id = 1;
         $project->save();
+        $project_user->project_id = $project->id;
+        $project_user->project_slug = $project->slug;
+        $project_user->user_id = Auth::id();
+        $project_user->role_id = 1;
+        $project_user->save();
         $panel->createTemplatePanel('Product Backlog', 'Backlog', $project->id, true);
         $panel->createTemplatePanel('Sprint 1', 'Sprint', $project->id, true);
         $panel->createTemplatePanel('Suggestions', 'Suggestions', $project->id, true);

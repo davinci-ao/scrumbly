@@ -16,7 +16,7 @@ class PanelController extends Controller
      * @param [int] $panel_id
      * @return void
      */
-    public function panelIndex($panel_id){
+    public function panelIndex($slug, $panel_id){
         $panel = Panel::find($panel_id);
         $features = $panel->features;
         $project_id = $panel->project_id;
