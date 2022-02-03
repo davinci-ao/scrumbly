@@ -23,26 +23,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/homepage', [ProjectController::class, 'index'])->middleware(['auth'])->name('homepage');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/homepage', [ProjectController::class, 'index'])->name('homepage');
 
-Route::post('/homepage/createProject', [ProjectController::class, 'create'])->middleware(['auth', 'verified'])->name('createProject');
-Route::get('/projects', [ProjectController::class, 'index'])->middleware(['auth', 'verified'])->name('projects');
-Route::get('{slug}', [ProjectController::class, 'projectIndex'])->middleware(['auth', 'role.system'])->name('projectIndex');
-Route::get('/{slug}/edit', [ProjectController::class, 'edit'])->middleware(['auth'])->name('editProject');
+    Route::post('/homepage/createProject', [ProjectController::class, 'create'])->name('createProject');
+    Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
-Route::get('/{slug}/panel/{panel_id}', [PanelController::class, 'panelIndex'])->middleware(['auth', 'verified'])->name('panelIndex');
-Route::post('/{slug}/finishPanel/{panel_id}', [PanelController::class, 'finish'])->middleware(['auth', 'verified'])->name('finishPanel');
-Route::post('/{slug}/createPanel', [PanelController::class, 'create'])->middleware(['auth', 'verified'])->name('createPanel');
-Route::post('/{slug}/editPanel/{panel_id}', [PanelController::class, 'edit'])->middleware(['auth', 'verified'])->name('editPanel');
-Route::post('/{slug}/deletePanel/{panel_id}', [PanelController::class, 'delete'])->middleware(['auth', 'verified'])->name('deletePanel');
-
-Route::post('/{slug}/createFeature', [FeatureController::class, 'create'])->middleware(['auth', 'verified'])->name('createFeature');
-Route::post('/{slug}/deleteFeature/{feature_id}', [FeatureController::class, 'delete'])->middleware(['auth', 'verified'])->name('deleteFeature');
-Route::post('/{slug}/editFeature/{feature_id}', [FeatureController::class, 'edit'])->middleware(['auth', 'verified'])->name('editFeature');
-
-Route::get('/admin/userlist', [DashboardController::class, 'index'])->middleware(['auth'])->name('userlist');
-Route::get('/admin/userlist/edit/{user_id}', [DashboardController::class, 'edit'])->middleware(['auth'])->name('editUser');
-Route::get('/admin/userlist/delete/{user_id}', [DashboardController::class, 'delete'])->middleware(['auth'])->name('deleteUser');
+    Route::get('/admin/userlist', [DashboardController::class, 'index'])->name('userlist');
+    Route::get('/admin/userlist/edit/{user_id}', [DashboardController::class, 'edit'])->name('editUser');
+    Route::get('/admin/userlist/delete/{user_id}', [DashboardController::class, 'delete'])->name('deleteUser');
+    
+    Route::middleware(['role.system'])->group(function () {
+        Route::get('{slug}', [ProjectController::class, 'projectIndex'])->name('projectIndex');
+        Route::get('/{slug}/edit', [ProjectController::class, 'edit'])->name('editProject');
+        
+        Route::get('/{slug}/panel/{panel_id}', [PanelController::class, 'panelIndex'])->name('panelIndex');
+        Route::post('/{slug}/finishPanel/{panel_id}', [PanelController::class, 'finish'])->name('finishPanel');
+        Route::post('/{slug}/createPanel', [PanelController::class, 'create'])->name('createPanel');
+        Route::post('/{slug}/editPanel/{panel_id}', [PanelController::class, 'edit'])->name('editPanel');
+        Route::post('/{slug}/deletePanel/{panel_id}', [PanelController::class, 'delete'])->name('deletePanel');
+        
+        Route::get('/{slug}/editMember/{member_id}', [ProjectController::class, 'editMember'])->name('editMember');
+        Route::get('/{slug}/deleteMember/{member_id}', [ProjectController::class, 'deleteMember'])->name('deleteMember');
+        
+        Route::post('/{slug}/createFeature', [FeatureController::class, 'create'])->name('createFeature');
+        Route::post('/{slug}/deleteFeature/{feature_id}', [FeatureController::class, 'delete'])->name('deleteFeature');
+        Route::post('/{slug}/editFeature/{feature_id}', [FeatureController::class, 'edit'])->name('editFeature');
+    });
+});
 
 Route::get('/access_denied', function() {
     die("You shall not pass!!");

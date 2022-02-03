@@ -4,7 +4,7 @@
 <x-app-layout>
     <x-slot name="header">
     <x-nav-link data-toggle="modal" data-target="#editProject{{ $project->id }}" class="text-decoration-none font-semibold ml-auto hover:text-gray-600 text-xl text-gray-800 leading-tight d-block">
-            {{ $project->name }} <i class="fa-solid fa-pen-to-square"></i>
+            {{ $project->name }} 
         </x-nav-link>
 
         <x-nav-link data-toggle="modal" data-target="#addNewPanel" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
@@ -22,5 +22,30 @@
                 @endforeach
             </div>
         </div>
+    </div>
+
+    <div class="row m-2 bg-white shadow-xl rounded col-12 col-md-6 col-lg-4">
+        @foreach($allRoles as $scrumRole)
+            <h3 class="m-3">{{ $scrumRole->name }}</h3>
+            @foreach($members as $member)
+            @include("layouts.edit-member")
+            @include("layouts.delete-member")
+                @if($member->role_id == $scrumRole->id)
+                    <div class="row m-2 bg-black text-white shadow-xl rounded col-12 col-md-6 col-lg-4">
+                        <p>{{ $member->name }}</p>
+                        @if($role == 1)
+                            @if($scrumRole->id != 1)
+                                <x-nav-link data-toggle="modal" data-target="#editMember{{ $member->id }}" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+                                    {{ __('Member Edit') }}
+                                </x-nav-link>
+                                <x-nav-link data-toggle="modal" data-target="#deleteMember{{ $member->id }}" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+                                    {{ __('Member Delete') }}
+                                </x-nav-link>
+                            @endif
+                        @endif
+                    </div>
+                @endif
+            @endforeach
+        @endforeach
     </div>
 </x-app-layout>

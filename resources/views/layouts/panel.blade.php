@@ -1,6 +1,10 @@
 <div class="row m-2 bg-white rounded col-12 col-md-6 col-lg-4">
     <div>
+<<<<<<< HEAD
         <x-nav-link href="{{ route('panelIndex', ['slug' => $project->slug,'panel_id' => $panel->id]) }}" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+=======
+        <x-nav-link href="{{ route('panelIndex', ['slug' => $project->slug, 'panel_id' => $panel->id]) }}" class="text-decoration-none ml-auto font-semibold  hover:text-gray-600 text-xl text-gray-800 leading-tight">
+>>>>>>> dev
             {{$panel->name}}
         </x-nav-link>
         <form method="post" action="{{ route('finishPanel', ['slug' => $project->slug, 'panel_id' => $panel->id]) }}">
