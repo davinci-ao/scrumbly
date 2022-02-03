@@ -50,6 +50,7 @@ class ProjectController extends Controller
             $member->role_id = $role_id;
             $member->role = $role_name;
         }
+
         return view('project', compact(['project', 'panels', 'features', 'role', 'members', 'allRoles']));
     }
 
